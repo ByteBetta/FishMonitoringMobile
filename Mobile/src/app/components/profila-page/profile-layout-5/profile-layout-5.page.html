@@ -1,0 +1,97 @@
+<!--Profile- Profile 1-->
+<ion-grid class="ion-no-padding" *ngIf="viewEntered">
+  <ion-row *ngIf="data != null">
+    <ion-col size="12">
+      <ion-card class="ion-no-margin ion-text-center background-size gradient-image no-border-radius"
+      *ngIf="data != null" [ngStyle]="{'background-image': 'url(' + data.headerImage + ')'}">
+        <ion-avatar>
+          <img [src]="data.image" alt="">
+        </ion-avatar>
+        <ion-card-content>
+          <h1 class="ion-text-wrap text-size-md text-color-light font-light">
+            {{data.title}}</h1>
+          <p class="ion-text-wrap text-size-xs text-color-light font-light">
+            {{data.subtitle}}</p>
+        </ion-card-content>
+        <div class="social-share">
+          <!-- Followers-->
+          <ion-item class="transparent" lines="none" (click)="buttonClick()">
+            <ion-label class="ion-text-center">
+              <span class="text-size-xs text-color-light font-regular">
+                {{data.valueFollowers}}</span>
+              <h2 class="text-size-xs text-color-light font-regular">
+                {{data.followers}}</h2>
+            </ion-label>
+          </ion-item>
+          <!-- Following -->
+          <ion-item class="transparent" lines="none" (click)="buttonClick()">
+            <ion-label class="ion-text-center">
+              <span class="text-size-xs text-color-light font-regular">
+                {{data.valueFollowing}}</span>
+              <h2 class="text-size-xs text-color-light font-regular">
+                {{data.following}}</h2>
+            </ion-label>
+          </ion-item>
+          <!-- Post -->
+          <ion-item class="transparent" lines="none" (click)="buttonClick()">
+            <ion-label class="ion-text-center">
+              <span class="text-size-xs text-color-light font-regular">
+                {{data.valuePosts}}</span>
+              <h2 class="text-size-xs text-color-light font-regular">
+                {{data.posts}}</h2>
+            </ion-label>
+          </ion-item>
+        </div>
+        <!-- Social Button-->
+        <ion-button class="button-icon ion-margin-bottom"
+        (click)="onFacebookFunc(data, $event)">
+          <ion-icon slot="icon-only" class="icon-font-xl icon-color-light"
+          [name]="data.logoFacebook"></ion-icon>
+        </ion-button>
+        <ion-button class="button-icon ion-margin-bottom"
+        (click)="onTwitterFunc(data, $event)">
+          <ion-icon slot="icon-only" class="icon-font-xl icon-color-light"
+          [name]="data.logoTwitter"></ion-icon>
+        </ion-button>
+        <ion-button class="button-icon ion-margin-bottom"
+        (click)="onInstagramFunc(data, $event)">
+          <ion-icon slot="icon-only" class="icon-font-xl icon-color-light"
+          [name]="data.logoInstagram"></ion-icon>
+        </ion-button>
+      </ion-card>
+    </ion-col>
+    <!-- Info Author-->
+    <ion-col size="12" *ngFor="let item of data.items">
+      <ion-card class="transparent ion-no-margin">
+        <ion-item class="transparent" lines="none">
+          <ion-label>
+            <h2 class="text-size-xs text-color-primary font-regular">
+              {{item.title}}</h2>
+            <p class="text-size-xs text-color-secondary font-light ion-text-wrap ion-padding-top">
+              {{item.subtitle}}</p>
+            <h3 class="text-size-xs text-color-primary font-light ion-padding-top">
+              {{item.content}}</h3>
+          </ion-label>
+        </ion-item>
+        <ion-item class="transparent" lines="none">
+          <ion-icon class="icon-font-md icon-color-accent" [name]="item.iconPhone">
+          </ion-icon>
+          <p class="text-size-xs text-color-primary font-light ion-padding-start">
+            {{item.phone}}</p>
+        </ion-item>
+        <ion-item class="transparent" lines="none">
+          <ion-icon class="icon-font-md icon-color-accent" [name]="item.iconMail">
+          </ion-icon>
+          <p class="text-size-xs text-color-primary font-light ion-padding-start">
+            {{item.mail}}</p>
+        </ion-item>
+        <ion-item class="transparent" lines="none">
+          <ion-icon class="icon-font-md icon-color-accent" [name]="item.iconGlobe">
+          </ion-icon>
+          <p class="text-size-xs text-color-primary font-light ion-padding-start">
+            {{item.globe}}</p>
+        </ion-item>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-grid>

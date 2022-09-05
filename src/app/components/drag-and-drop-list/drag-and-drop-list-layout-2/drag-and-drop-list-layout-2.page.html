@@ -1,0 +1,44 @@
+<!-- DRAGEN AND DROP --COMPONENT 2 -->
+<ion-grid class="ion-no-padding" *ngIf="data != null">
+  <ion-row>
+    <ion-col size="12" class="ion-no-padding">
+      <ion-list>
+        <!--Header-->
+        <ion-list-header class="border ion-padding">
+          <ion-label lines="none">
+            <h1 class="ion-text-wrap ion-padding-bottom text-size-xl text-color-primary font-bold">
+              {{data.header}}</h1>
+              <h1 class="ion-text-wrap text-size-md text-color-primary font-light">
+                {{data.title}}</h1>
+              <h2 class="ion-text-wrap text-size-xs text-color-secondary font-light">
+                {{data.subtitle}}</h2>
+            </ion-label>
+            <!--Header Button Procead---->
+            <ion-button class="button-round" shape="round" fill="outline" (click)="onProceedFunc(data, $event)">
+              {{data.button}}
+            </ion-button>
+        </ion-list-header>
+        <!-- Content -->
+        <ion-reorder-group disabled="false" (ionItemReorder)="ionItemReorder($event)">
+          <ion-item *ngFor="let item of data.items" (click)="onItemClickFunc(item, $event)">
+            <!-- Avatar -->
+            <ion-thumbnail>
+              <img [src]="item.image">
+            </ion-thumbnail>
+            <ion-label class="ion-padding-start">
+              <h2 class="ion-text-wrap ion-text-capitalize  text-size-md text-color-primary font-light">{{item.title}}</h2>
+              <h3 class="ion-text-wrap text-size-xs text-color-primary font-light">{{item.subtitle}}</h3>
+            </ion-label>
+            <ion-label class="ion-align-self-center" slot="end">
+              <!-- Badge -->
+              <ion-badge class="margin-half">{{item.price}}</ion-badge>
+            </ion-label>
+            <ion-reorder class="ion-no-margin padding-half" slot="end">
+              <ion-icon class="icon-color-secondary icon-font-lg" name="reorder-three"></ion-icon>
+            </ion-reorder>
+          </ion-item>
+        </ion-reorder-group>
+      </ion-list>
+    </ion-col>
+  </ion-row>
+</ion-grid>

@@ -1,0 +1,33 @@
+<!-- SWIPE TO DISMISS --COMPONENT 1 -->
+<ion-list class="ion-no-margin" #dynamicList>
+  <ion-list-header>
+    <ion-label>Fish List</ion-label>
+  </ion-list-header>
+        <!-- Content List -->
+        <ion-item-sliding class="ion-padding-start background-primary" #sliding (click)="onItemClickFunc(item, $event)" disabled="false" *ngFor="let item of data.items">
+          <ion-item class="ion-no-padding background-primary" lines="full">
+            <ion-thumbnail slot="start" class="is-icon-thumbnail is-background-dark ion-align-self-start">
+              <img [src]="item.image"/>
+            </ion-thumbnail>
+            <ion-label>
+              <!-- Title -->
+              <h2 class="ion-text-wrap text-size-md text-color-primary font-light">{{item.title}}</h2>
+              <!-- Subtitle -->
+              <h3 class="ion-text-wrap text-size-xs text-color-secondary font-light">{{item.subtitle}}</h3>
+              <h3 class="ion-text-wrap text-size-xs text-color-secondary font-light">{{item.Length}}</h3>
+            </ion-label>
+            <p class="text-size-xs text-color-secondary font-light padding-half">{{item.textIcon}}</p>
+            <ion-icon class="icon-font-md icon-color-accent" [name]="item.icon"></ion-icon>
+          </ion-item>
+          <ion-item-options side="end">
+            <ion-item-option class="background-accent" (click)="onDeleteFunc(item, $event)">
+              <!-- Button -->
+              <ion-button class="text-color-light text-size-md font-bold  ion-text-capitalize" fill="clear" (click)="delete(item)">
+                Delete
+              </ion-button>
+            </ion-item-option>
+          </ion-item-options>
+        </ion-item-sliding>
+        </ion-list>
+      
+

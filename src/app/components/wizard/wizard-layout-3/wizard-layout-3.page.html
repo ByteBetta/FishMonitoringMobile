@@ -1,0 +1,27 @@
+<ion-content *ngIf="viewEntered">
+  <ion-slides #wizardSlider pager="true" *ngIf="data != null"
+  (ionSlideDidChange)="ionSlideDidChange($event)"
+  (ionSlideReachStart)="ionSlideReachStart($event)"
+  (ionSlideReachEnd)="ionSlideReachEnd($event)">
+    <ion-slide class="background-size gradient-image"
+    *ngFor="let item of data.items;"
+    [ngStyle]="{'background-image': 'url(' + item.backgroundImage + ')'}">
+      <ion-card class="ion-no-margin ion-padding no-box-shadow ion-text-left transparent">
+        <h2 class="ion-text-wrap text-size-md text-color-light font-regular">{{item.subtitle}}</h2>
+        <h1 class="ion-text-wrap text-size-xl text-color-light font-bold">{{item.title}}</h1>
+      </ion-card>
+    </ion-slide>
+  </ion-slides>
+  <!--Button section-->
+  <div *ngIf="data != null">
+    <ion-button fill="clear" class="text-color-accent ion-text-capitalize" (click)="onPreviousFunc()" *ngIf="prev">
+      {{data.btnPrev}}
+    </ion-button>
+    <ion-button fill="clear" class="text-color-accent ion-text-capitalize" (click)="onNextFunc()" *ngIf="next">
+      {{data.btnNext}}
+    </ion-button>
+    <ion-button fill="clear" class="text-color-accent ion-text-capitalize" (click)="onFinishFunc()" *ngIf="!next">
+      {{data.btnFinish}}
+    </ion-button>
+  </div>
+</ion-content>

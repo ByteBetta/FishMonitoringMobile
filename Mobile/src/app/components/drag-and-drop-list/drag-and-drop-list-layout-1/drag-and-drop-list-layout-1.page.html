@@ -1,0 +1,23 @@
+<!-- DRAGEN AND DROP --COMPONENT 1 -->
+<ion-list-header class="border ion-padding">
+  <ion-label lines="none">
+    <h3 class="ion-text-wrap ion-padding-bottom text-size-md text-color-primary">
+      Current Fish Listed</h3>
+
+    </ion-label>
+</ion-list-header>
+        <ion-reorder-group disabled="false" (ionItemReorder)="ionItemReorder($event)">
+          <ion-item *ngFor="let item of data.items" (click)="onItemClickFunc(item, $event)">
+            <ion-label>
+              <!-- Content Title -->
+              <h2 class="ion-text-wrap text-size-md text-color-primary font-light">{{item.title}}</h2>
+              <!-- Content Subtitle -->
+              <h3 class="ion-text-wrap text-size-xs text-color-secondary font-light">{{item.subtitle}}</h3>
+              <h3 class="ion-text-wrap text-size-xs text-color-secondary font-light">{{item.Length}}</h3>
+            </ion-label>
+            <!-- Content Subtitle -->
+            <p class="ion-text-wrap text-size-xs text-color-secondary font-light padding-half">{{item.textIcon}}</p>
+            <ion-reorder class="ion-no-margin padding-half" slot="end">
+              <ion-icon class="icon-color-secondary icon-font-lg" name="reorder-three"></ion-icon>
+            </ion-reorder>
+    

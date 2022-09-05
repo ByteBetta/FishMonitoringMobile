@@ -1,0 +1,65 @@
+<!-- GOOGLE CARD --COMPONENT 2 -->
+<ion-grid *ngIf="data != null">
+  <ion-row>
+    <ion-col size="12" size-md="6" *ngFor="let item of data.items">
+    
+      <ion-card class="ion-no-margin ion-text-start no-box-shadow border-radius" (click)="onItemClickFunc(item, $event)">
+        <div class="card-image">
+          <!--Card image-->
+          <img [src]="item.image" />
+          <div class="price-section">
+            <span class="new-category ion-margin-end">{{item.price}}</span>
+            <!-- Share Button --->
+            <ion-button class="ion-no-padding button-action-shit" (click)="presentActionSheet(data, $event)">
+              <ion-icon class="icon-font-md icon-color-light" slot="icon-only" [name]="item.shareIcon"></ion-icon>
+            </ion-button>
+          </div>
+        </div>
+        <!--Card content-->
+        <ion-card-content class="transparent">
+        
+          <!--Card title-->
+          <h1 class="ion-text-wrap ion-no-margin text-size-xl text-color-primary font-bold">{{item.title}}</h1> 
+          <!--Card subtitle-->
+          <h2 class="ion-text-wrap text-size-md text-color-secondary font-light">Family : {{item.subtitle}}</h2>
+          <h2 class="ion-text-wrap text-size-md text-color-secondary font-light">Order : {{item.order}}</h2>
+          
+          <ion-grid class="ion-no-padding ion-no-margin">
+          <ion-row *ngIf="item != null">
+            <ion-col size="12" class="ion-no-padding ion-no-margin">
+              <ion-list class="ion-no-padding ion-no-margin">
+                <ul class="ion-no-margin" class="ion-no-padding collapsible">
+                  <li *ngFor="let group of item.group">
+                    <!-- Expandable Full image with CTA Header-->
+                    <div class="collapsible-header" (click)="toggleGroup(group)">
+                      <ion-item>
+                        <ion-label class="ion-text-capitalize">
+                          <!-- Title -->
+                          <h2 class="text-size-md text-color-primary font-light">{{group.Description}}</h2>
+                        </ion-label>
+                        <!-- Icon -->
+                        <i slot="end" class="icon {{group.icon}} icon-font-md icon-color-accent"></i>
+                      </ion-item>
+                    </div>
+                    <!-- Expandable Full image with CTA Body -->
+                    <div class="item-accordion"[ngClass]="{'active': group.show }" [hidden]="!group.show">
+                      <div *ngFor="let item of group.list;">
+                        <p class="text-size-p text-color-secondary font-light ion-padding-top">{{item.details}}</p>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </ion-list>
+            </ion-col>
+          </ion-row>
+          </ion-grid>
+        </ion-card-content>
+        
+      
+
+      </ion-card>
+
+ 
+    </ion-col>
+  </ion-row>
+</ion-grid>

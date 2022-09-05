@@ -1,0 +1,338 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Edit Fish
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="step === 1">
+    <form [formGroup]="form" (ngSubmit)="nextStep()" novalidate>
+      <ion-item lines="none">
+        <ion-list-header>
+          <ion-label >Transaction ID: {{idgenerate}}</ion-label>
+        </ion-list-header>
+      </ion-item>
+  <ion-item>
+    <ion-label class="text-size-xs text-color-secondary font-regular" >Date:</ion-label>
+    <ion-datetime displayFormat="MMMM DD YYYY" placeholder="Select Date" formControlName="Date" [(ngModel)]="dateData"></ion-datetime>
+  </ion-item>
+  <cs-select-layout-2 [data]="lsiteData" (onChange)="onChangeLsiteData($event)" ></cs-select-layout-2>
+  <!--
+  
+  <cs-select-layout-2 [data]="fisherman" (onChange)="onChangeFisherman($event)"></cs-select-layout-2>
+  <cs-select-layout-2 [data]="boat" (onChange)="onChangeBoat($event)"></cs-select-layout-2>
+  -->
+  <cs-select-layout-2 [data]="gearUsed" (onChange)="onChangeGearUsed($event)"></cs-select-layout-2>
+
+  <ion-grid class="ion-padding"> 
+    <ion-row>
+      <ion-col class="ion-no-padding" size="12">
+        <ion-list>
+          <ion-list-header>
+            <ion-label>Fisherman Details</ion-label>
+          </ion-list-header>
+         <ion-item  class="box" >
+          <ion-input type="text" placeholder="Fisherman/Company" formControlName="fisherman" [(ngModel)]="fishermanTxt" readonly></ion-input>
+          <ion-button  expand="block" slot="end" (click)="SelectFisherman()">Select</ion-button>
+         </ion-item>
+         <ion-item *ngIf="isSubmitted && errorControl.fisherman.errors?.required" lines="none" class="is-item-hint">
+      <ion-label  color="danger" class="ion-text-wrap">
+        <p color="danger">Please Select Fisherman</p>
+      </ion-label>
+    </ion-item>
+         <ion-item  class="box" >
+          <ion-input  type="text" placeholder="Select Vessel" formControlName="Vessel"  [(ngModel)]="VesselTxt" readonly></ion-input>
+          <ion-button  expand="block" slot="end" (click)="SelectVessel()">Select</ion-button>
+         </ion-item> 
+         <ion-item *ngIf="isSubmitted && errorControl.Vessel.errors?.required" lines="none" class="is-item-hint">
+          <ion-label  color="danger" class="ion-text-wrap">
+            <p color="danger">Please Select Vessel</p>
+          </ion-label>
+        </ion-item>
+     <ion-item  class="box">
+      <ion-label slot="end" class="ion-text-right" >pcs</ion-label>
+      <ion-input  type="number" placeholder="No. of Boxes"  formControlName="numberbox" (keypress)="numericOnly($event)" [(ngModel)]="NBoxesTxt"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="isSubmitted && errorControl.numberbox.errors?.required" lines="none" class="is-item-hint">
+        <ion-label color="danger" class="ion-text-wrap">
+          <p color="danger">Wrong Format! This field require number or decimal</p>
+        </ion-label>
+      </ion-item>
+      <ion-item  class="box" >
+        <ion-label slot="end" class="ion-text-right" >kg</ion-label>
+        <ion-input type="number" value="0.00" inputmode="decimal" formControlName="kilobox" (keypress)="numbericDecimal($event)" step="0.01" placeholder="Total Weight of Boxes (In KG)" [(ngModel)]="TWeightBoxesTxt"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="isSubmitted && errorControl.kilobox.errors?.required" lines="none" class="is-item-hint">
+      <ion-label color="danger" class="ion-text-wrap">
+        <p color="danger">Wrong Format! This field require number  or decimal</p>
+      </ion-label>
+    </ion-item>
+    <ion-item class="box" >
+      <ion-label slot="end" class="ion-text-right">pcs</ion-label>
+      <ion-input  type="number" placeholder="No. of Sampled Boxes"  formControlName="samplebox" (keypress)="numericOnly($event)" [(ngModel)]="NSBoxesTxt"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="isSubmitted && errorControl.samplebox.errors?.required" lines="none" class="is-item-hint">
+      <ion-label color="danger" class="ion-text-wrap">
+        <p color="danger">Wrong Format! This field require number or decimal</p>
+      </ion-label>
+    </ion-item>
+    <ion-item  class="box">
+      <ion-label slot="end" class="ion-text-right">kg</ion-label>
+    <ion-input type="number" value="0.00" inputmode="decimal"  formControlName="samplekilo" (keypress)="numbericDecimal($event)" step="0.01" placeholder="Total Weight of Sampled Boxes (In KG)" [(ngModel)]="TSWeightBoxesTxt"></ion-input>
+    </ion-item>
+    <ion-item lines="none" class="is-item-hint">
+      <ion-label *ngIf="isSubmitted && errorControl.samplekilo.errors?.required" color="danger" class="ion-text-wrap">
+        <p color="danger">Wrong Format! This field require number or decimal</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+      </ion-col>
+      <ion-col size="12" class="ion-padding ion-align-self-end">
+        <ion-button expand="block" class="ion-text-capitalize  button-default" (click)="nextStep()">
+           Next
+        </ion-button>
+     </ion-col>
+   
+  </ion-row>
+  </ion-grid>
+</form>
+</div>
+
+<div  *ngIf="step === 2">
+<div *ngFor="let item of currentSelected.items">
+  <img [src]="item.image"/>
+  <ion-grid class="ion-no-padding ion-margin-top" >
+    <ion-row class="ion-padding-horizontal ion-padding-bottom">
+      <ion-col size="9" class="ion-align-self-center">
+        <h3 class="ion-no-margin">{{item.title}}</h3>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-padding-horizontal ion-padding-bottom">
+      <ion-col size="6" class="ion-align-self-center">
+        <h5 class="ion-no-margin">Family: {{item.subtitle}}</h5>
+        <h5 class="ion-no-margin">Order: {{item.order}}</h5>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  
+
+  
+  <ion-segment *ngIf="item != null" class="is-segment-clear is-section-bordered" value="Shortdescription" (ionChange)="segmentChanged($event)" scrollable>
+    <ion-segment-button value="Shortdescription">
+      <ion-label>SHORT DESCRIPTION</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="distribution">
+      <ion-label>DISTRIBUTION</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="environment">
+      <ion-label>ENVIRONMENT</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="biology">
+      <ion-label>BIOLOGY</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="measurement">
+      <ion-label>MEASUREMENT</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+ 
+  <div *ngIf="item != null" class="ion-padding">
+    <p *ngIf="segmentValue == null">{{item.shortdescription}}</p>
+    <p *ngIf="segmentValue == 'Shortdescription'">{{item.shortdescription}}</p>
+    <p *ngIf="segmentValue == 'distribution'">{{item.distribution}}</p>
+    <p *ngIf="segmentValue == 'environment'">{{item.environment}}</p>
+    <p *ngIf="segmentValue == 'biology'">{{item.biology}}</p>
+    <p *ngIf="segmentValue == 'measurement'">{{item.measurement}}</p>
+    </div>
+</div>
+  <ion-grid class="ion-padding">
+    <ion-row>
+      <ion-col size="12" class="ion-no-padding ion-align-self-end">
+        <ion-button expand="block" class="ion-text-capitalize  button-default" (click)="SelectSpecies()">
+           Select Species
+        </ion-button>
+     </ion-col>
+     <ion-col class="ion-padding" size="12">
+      <form [formGroup]="fishform" (ngSubmit)="add()" novalidate>
+     <ion-item class="box" input>
+      <ion-label slot="end" class="ion-text-right">cm</ion-label>
+      <ion-input type="number" placeholder="Length in cm" [(ngModel)]="FishLength"  formControlName="length"></ion-input>
+   </ion-item>
+   <ion-item *ngIf="isFishSubmitted && fisherror.length.errors?.required" lines="none" class="is-item-hint">
+    <ion-label  color="danger" class="ion-text-wrap">
+      <p color="danger">Wrong Format! This field require number or decimal</p>
+    </ion-label>
+  </ion-item>
+   <ion-item class="box" input>
+    <ion-label slot="end" class="ion-text-right">kg</ion-label>
+    <ion-input type="number" placeholder="Weight in Kg" [(ngModel)]="FishWeigth"  formControlName="weight"></ion-input>
+ </ion-item>
+ <ion-item *ngIf="isFishSubmitted && fisherror.weight.errors?.required" lines="none" class="is-item-hint">
+  <ion-label  color="danger" class="ion-text-wrap">
+    <p color="danger">Wrong Format! This field require number or decimal</p>
+  </ion-label>
+</ion-item>
+ </form>
+ </ion-col>
+
+<ion-col size="12" class="ion-no-padding ion-align-self-end">
+  <ion-button expand="block" class="ion-text-capitalize  button-default" (click)="add()">
+     Add to List
+  </ion-button>
+</ion-col>
+<ion-col size="12" class="ion-no-padding ion-align-self-end">
+  <ion-button expand="block" class="ion-text-capitalize  button-default" (click)="submit()">
+     Next
+  </ion-button>
+</ion-col>
+    </ion-row>
+  </ion-grid>
+  <cs-swipe-to-dismiss-list-layout-1 [data]="currentFish" (onDelete)="onDelete($event)"></cs-swipe-to-dismiss-list-layout-1>
+</div>
+
+<div *ngIf = "step === 3">
+  <div *ngFor="let item of finalData">
+    <ion-item>
+      <ion-grid class="ion-no-padding ion-margin-vertical">
+        <ion-row class="ion-align-items-stretch">
+          <ion-col size="8" class="ion-text-left">
+            <span>Transaction ID</span>
+          </ion-col>
+          <ion-col size="4" class="ion-text-right">
+            <div class="ion-no-padding">
+              <div class="ion-no-padding">
+                <span>{{item.UID}}</span>
+              </div>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+    <ion-item>
+      <ion-grid class="ion-no-padding ion-margin-vertical">
+        <ion-row class="ion-align-items-stretch">
+          <ion-col size="9" class="ion-text-left">
+            <span>Date</span>
+          </ion-col>
+          <ion-col size="3" class="ion-text-right">
+            <div class="ion-no-padding">
+              <div class="ion-no-padding">
+                <span>{{dateholder}}</span>
+              </div>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+    <ion-item-group>
+      <ion-item-divider>
+        <ion-label>Fisherman Details</ion-label>
+        <div slot="end" class="ion-padding-horizontal"><a (click)="edit()">Edit</a></div>
+      </ion-item-divider>
+      <ion-item>
+        <ion-grid class="ion-no-padding ion-margin-vertical">
+          <ion-row class="ion-align-items-stretch">
+            <ion-col size="9" class="ion-text-left">
+              <span>Fisherman</span>
+            </ion-col>
+            <ion-col size="3" class="ion-text-right">
+              <div class="ion-no-padding">
+                <div class="ion-no-padding">
+                  <span>{{item.Fisherman}}</span>
+                </div>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+      <ion-item>
+        <ion-grid class="ion-no-padding ion-margin-vertical">
+          <ion-row class="ion-align-items-stretch">
+            <ion-col size="9" class="ion-text-left">
+              <span>Vessel</span>
+            </ion-col>
+            <ion-col size="3" class="ion-text-right">
+              <div class="ion-no-padding">
+                <div class="ion-no-padding">
+                  <span>{{item.Boat}}</span>
+                </div>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+      <ion-item>
+        <ion-grid class="ion-no-padding ion-margin-vertical">
+          <ion-row class="ion-align-items-stretch">
+            <ion-col size="9" class="ion-text-left">
+              <span>Landing Site</span>
+            </ion-col>
+            <ion-col size="3" class="ion-text-right">
+              <div class="ion-no-padding">
+                <div class="ion-no-padding">
+                  <span>{{item.LandingSite}}</span>
+                </div>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+      <ion-item>
+        <ion-grid class="ion-no-padding ion-margin-vertical">
+          <ion-row class="ion-align-items-stretch">
+            <ion-col size="9" class="ion-text-left">
+              <span>Gear Used</span>
+            </ion-col>
+            <ion-col size="3" class="ion-text-right">
+              <div class="ion-no-padding">
+                <div class="ion-no-padding">
+                  <span>{{item.GearUsed}}</span>
+                </div>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+    </ion-item-group>
+    <ion-item-divider>
+      <ion-label>Species</ion-label>
+      <div slot="end" class="ion-padding-horizontal"><a (click)="editSpecies">Edit</a></div>
+    </ion-item-divider>
+    <div *ngFor="let item of fishlish">
+    <ion-item >
+      <ion-grid class="ion-no-padding ion-margin-vertical">
+        <ion-row class="ion-align-items-stretch">
+          <ion-col size="9" class="ion-text-left">
+            <span>{{item.Species}}</span>
+          </ion-col>
+          <ion-col size="3" class="ion-text-right">
+            <div class="is-price ion-no-padding">
+            </div>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <p class="ion-no-margin">Weight: {{item.Weight}} Length: {{item.Length}}</p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </div>
+</div>
+<ion-grid>
+  <ion-row>
+<ion-col size="12" class="ion-no-padding ion-align-self-end">
+  <ion-button expand="block" class="ion-text-capitalize  button-default" (click)="finalsubmit()">
+     Submit
+  </ion-button>
+</ion-col>
+    </ion-row>
+  </ion-grid>
+</div>
+</ion-content>

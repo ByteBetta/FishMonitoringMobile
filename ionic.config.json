@@ -1,0 +1,7 @@
+{
+  "name": "ionic4-blue-light-side-menu",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

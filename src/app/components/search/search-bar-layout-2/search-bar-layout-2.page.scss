@@ -1,0 +1,11 @@
+
+ion-toolbar {
+  color: var(--cs-text-light);
+}
+
+.ios {
+  ion-back-button,
+  ion-menu-button {
+    --color: var(--cs-text-light);
+  }
+}

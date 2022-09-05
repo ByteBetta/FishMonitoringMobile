@@ -1,0 +1,100 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Recent Sent
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div  *ngIf="!isLogin" class="is-empty-state-content">
+    <img src="assets/imgs/nouser.jpg"/>
+    <h3>No User Detect!</h3>
+    <p>Please Login Your Account</p>
+  </div>
+  <div *ngIf="isLogin">
+  <ion-item-group >
+    <div *ngFor="let data of dataholder">
+    <ion-item-divider>
+      <ion-label>Transaction ID: {{data.UID}}</ion-label>
+      <div slot="end" class="ion-padding-horizontal"><a >Details</a></div>
+    </ion-item-divider>
+    <ion-item>
+      <ion-grid class="ion-no-padding ion-margin-vertical">
+        <ion-row>
+          <ion-col size="6">
+            <p class="ion-no-margin">Date</p>
+          </ion-col>
+          <ion-col size="4" class="is-vertical-align">
+            <span>{{converteddate}}</span>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+    <ion-item>
+      <ion-grid class="ion-no-padding ion-margin-vertical">
+        <ion-row class="ion-align-items-stretch">
+          <ion-col size="6">
+            <p class="ion-no-margin">Fisherman</p>
+          </ion-col>
+          <ion-col size="6">
+            <span>{{data.Fisherman}}</span>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+      <ion-item>
+        <ion-grid class="ion-no-padding ion-margin-vertical">
+          <ion-row class="ion-align-items-stretch">
+            <ion-col size="6">
+              <p class="ion-no-margin">Boat</p>
+            </ion-col>
+            <ion-col size="6">
+              <span>{{data.Boat}}</span>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+      <ion-item>
+        <ion-grid class="ion-no-padding ion-margin-vertical">
+          <ion-row class="ion-align-items-stretch">
+            <ion-col size="6">
+              <p class="ion-no-margin">Gear Used</p>
+            </ion-col>
+            <ion-col size="6">
+              <span>{{data.GearUsed}}</span>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+        <ion-item>
+          <ion-grid class="ion-no-padding ion-margin-vertical">
+            <ion-row class="ion-align-items-stretch">
+              <ion-col size="6">
+                <p class="ion-no-margin">Landing Site</p>
+              </ion-col>
+              <ion-col size="6">
+                <span>{{data.LandingSite}}</span>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-item>
+
+<ion-item>
+  <ion-grid class="ion-no-padding ion-margin-vertical">
+    <ion-row class="ion-align-items-stretch">
+      <ion-col size="6">
+        <p class="ion-no-margin">Total Fish</p>
+      </ion-col>
+      <ion-col size="6">
+        <span>{{data.FishList.length}}</span>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  </ion-item>
+  </div>
+  </ion-item-group> 
+</div>
+</ion-content>

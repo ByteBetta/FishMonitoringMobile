@@ -1,0 +1,28 @@
+<!-- ALERT --COMPONENT 2 -->
+<ion-grid>
+  <ion-row *ngIf="data != null">
+    <ion-col size="12" size-md="6" *ngFor="let item of data.items" (click)="presentAlert(item, $event)">
+      <!-- Card -->
+      <ion-card class="ion-no-padding ion-no-margin no-border-radius no-box-shadow">
+        <div class="border-radius gradient-image">
+          <ion-img [src]="item.image"></ion-img>
+        </div>
+        <ion-card-content class="ion-text-center">
+          <h2 class="ion-text-capitalize text-size-md text-color-primary font-size-bold">{{item.title}}</h2>
+          <span class="ion-text-capitalize text-size-md text-color-secondary font-size-regular">{{item.category}}</span>
+          <div class="clearfix"></div>
+          <!-- Button Like -->
+          <ion-button class="button-icon">
+            <ion-icon class="icon-font-md icon-color-primary" slot="start" [name]="item.iconLike" (click)="onLikeFunc(item, $event)"></ion-icon>
+            {{item.numberLike}}
+          </ion-button>
+          <!-- Button Commnets -->
+          <ion-button class="button-icon">
+            <ion-icon class="icon-font-md icon-color-primary" slot="start" [name]="item.iconComment" (click)="onCommentFunc(item, $event)"></ion-icon>
+            {{item.numberCommnet}}
+          </ion-button>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-grid>

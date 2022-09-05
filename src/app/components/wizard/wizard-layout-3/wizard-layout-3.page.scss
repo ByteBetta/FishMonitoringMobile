@@ -1,0 +1,23 @@
+ion-slides {
+  height: 100%;
+  position: relative;
+  // Settings Background
+  .background-size {
+    position: relative;
+    // Card Settings
+    ion-card {
+      position: absolute;
+      top: 15%;
+      left: 0;
+      right: 0;
+    }
+  }
+}
+
+ion-button {
+  position: absolute;
+  bottom: 16px;
+  z-index: 999;
+  left: 50%;
+  transform: translate(-50%);
+}

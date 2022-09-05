@@ -1,0 +1,24 @@
+/* Style component 2
+========================================================*/
+:host {
+  --size-ion-small-thumbnail: 72px !important;
+}
+
+ion-list-header {
+  overflow: visible;
+
+  ion-button {
+    align-self: flex-end;
+  }
+}
+
+ion-thumbnail {
+  height: var(--size-ion-small-thumbnail);
+  width: var(--size-ion-small-thumbnail);
+}
+
+ion-item {
+  ion-label {
+    flex: unset;
+  }
+}

@@ -1,0 +1,18 @@
+/* Style component 3
+========================================================*/
+ion-item-sliding {
+  padding: 8px 0;
+}
+
+ion-item {
+  --min-height: 250px;
+  position: relative;
+
+
+  ion-label {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+  }
+}

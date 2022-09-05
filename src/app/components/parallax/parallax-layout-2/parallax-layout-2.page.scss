@@ -1,0 +1,44 @@
+ion-toolbar {
+  color: var(--cs-text-light);
+}
+
+.ios {
+  ion-back-button,
+  ion-menu-button {
+    --color: var(--cs-text-light);
+  }
+}
+
+.active {
+  ion-toolbar {
+    background: var(--cs-background-primary);
+    color: var(--cs-text-accent);
+  }
+
+  .ios {
+    ion-back-button,
+    ion-menu-button {
+      --color: var(--cs-text-accent);
+    }
+  }
+}
+
+.background-size {
+  height: 400px !important;
+  position: relative;
+  padding: 16px 16px;
+  align-items: center;
+  display: grid;
+}
+
+ion-card {
+
+  ion-item {
+    display: inline-flex;
+
+    ion-avatar {
+      height: 92px;
+      width: 92px;
+    }
+  }
+}

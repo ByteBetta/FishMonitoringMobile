@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Search Fish
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-searchbar [(ngModel)]="search" (ionInput)="onTextChangeFunc($event.target.value)"></ion-searchbar>
+  <cs-select-layout-2 [data]="option" (onChange)="onChange($event)"></cs-select-layout-2>
+  <cs-google-card-list-layout-2
+    [data]="data"
+    (onFab)="onFab($event)" 
+    (onItemClick)="onItemClick($event)"
+    >
+    <div class="ion-no-padding collapsible-header" (click)="toggleGroup(group)">
+      <ion-item>
+        <ion-label class="ion-padding-start ion-align-self-start">
+        </ion-label>
+      </ion-item>
+    </div>
+  </cs-google-card-list-layout-2>
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+</ion-content>

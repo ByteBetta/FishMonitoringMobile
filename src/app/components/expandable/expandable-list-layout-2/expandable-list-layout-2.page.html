@@ -1,0 +1,63 @@
+<!-- EXPANDABLE --COMPONENT 2 -->
+<ion-app>
+  <!-- Header -->
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="/"></ion-back-button>
+      </ion-buttons>
+      <ion-title class="ion-text-capitalize">{{data.toolbarTitle}}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content *ngIf="data != null">
+    <ion-grid class="ion-no-padding">
+      <ion-row *ngIf="data != null">
+        <ion-col size="12" class="ion-no-padding ion-no-margin">
+          <ion-list>
+            <ul class="collapsible ion-no-padding ion-no-margin">
+              <li *ngFor="let group of data.items;" class="padding-half">
+                <!-- Expandable Full image with CTA Header-->
+                <div class="collapsible-header background-size gradient-image" [ngStyle]="{'background-image': 'url(' + group.backgroundImage + ')'}">
+                  <ion-item lines="none" class="transparent">
+                    <ion-label>
+                      <h2 class="ion-text-wrap text-size-md text-color-light font-regular">{{group.subtitle}}</h2>
+                      <h1 class="ion-text-wrap text-size-xl text-color-light font-bold ion-padding-bottom">{{group.title}}</h1>
+                      <ion-button class="ion-text-capitalize button-icon" (click)="toggleGroup(group)">
+                        <ion-icon class="icon-font-md icon-color-accent" slot="start" name="{{group.icon}}"></ion-icon>
+                        {{group.iconText}}
+                      </ion-button>
+                    </ion-label>
+                  </ion-item>
+                </div>
+                <!-- Expandable Full image with CTA Body -->
+                <div class="item-accordion" [ngClass]="{'active': group.show }" [hidden]="!group.show">
+                  <div (click)="onItemClickFunc(group, $event)">
+                    <ion-item lines="none">
+                      <div class="ion-margin-end ion-float-start">
+                        <!-- Icon Rating Star -->
+                        <div class="ion-float-start" *ngFor="let item of group.items.iconsStars;let i = index" (click)="onStarClass(group.items.iconsStars, i, $event);">
+                          <i *ngIf="item.isActive" class="icon {{item.iconActive}} icon-font-md icon-color-accent"></i>
+                          <i *ngIf="!item.isActive" class="icon {{item.iconInactive}} icon-font-md icon-color-accent"></i>
+                        </div>
+                      </div>
+                      <!-- Reviews Star -->
+                      <p class="ion-text-wrap ion-no-margin ion-padding-start text-size-xs text-color-secondary font-regular ion-float-start">{{group.items.reviews}}</p>
+                    </ion-item>
+                    <ion-item lines="none">
+                      <ion-label>
+                        <!-- Subtitle -->
+                        <h2 class="ion-text-wrap text-size-md text-color-primary font-light">{{group.items.title}}</h2>
+                        <!-- Description -->
+                        <p class="ion-text-wrap text-size-xs text-color-secondary font-light ">{{group.items.description}}</p>
+                      </ion-label>
+                    </ion-item>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-content>
+</ion-app>

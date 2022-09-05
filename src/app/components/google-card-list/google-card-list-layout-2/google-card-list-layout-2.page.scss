@@ -1,0 +1,41 @@
+/* Style component 1
+========================================================*/
+ion-card {
+  .card-image {
+    position: relative;
+
+    img {
+      width: 100% !important;
+    }
+
+    .price-section {
+      position: absolute;
+      display: flex;
+      align-self: center;
+      bottom: 8px;
+      right: 16px;
+    }
+  }
+}
+
+
+.item-accordion {
+  max-height: 0;
+  display: block !important;
+  -moz-transition: all 400ms;
+  -ms-transition: all 400ms;
+  -o-transition: all 400ms;
+  -webkit-transition: all 400ms;
+  transition: all 400ms;
+  overflow: hidden;
+
+  &.active {
+    -moz-transition: all 400ms;
+    -ms-transition: all 400ms;
+    -o-transition: all 400ms;
+    -webkit-transition: all 400ms;
+    transition: all 400ms;
+    overflow: visible;
+    max-height: 999px;
+  }
+}

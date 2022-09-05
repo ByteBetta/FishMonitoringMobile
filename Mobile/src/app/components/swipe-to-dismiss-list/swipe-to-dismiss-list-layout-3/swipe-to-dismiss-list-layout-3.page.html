@@ -1,0 +1,28 @@
+<!-- SWIPE TO DISMISS --COMPONENT 3 -->
+<ion-content>
+  <ion-grid class="ion-no-padding" *ngIf="data != null">
+    <ion-row>
+      <ion-col size="12" class="ion-padding">
+        <ion-list class="ion-no-margin ion-no-padding" #dynamicList>
+          <ion-item-sliding *ngFor="let item of data.items" #slidingItem>
+            <ion-item class="ion-no-padding background-size transparent border-radius gradient-image" lines="none" (click)="onItemClickFunc(item.title, $event)" [ngStyle]="{'background-image': 'url(' + item.image + ')'}">
+              <!-- Title and Submenu -->
+              <ion-label class="ion-no-margin ion-padding">
+                <h2 class="text-size-md text-color-light font-regular">{{item.subtitle}}</h2>
+                <h1 class="text-size-xl text-color-light font-bold">{{item.title}}</h1>
+              </ion-label>
+            </ion-item>
+            <ion-item-options side="start">
+              <ion-item-option (click)="onDeleteFunc(item, $event)">
+                <!-- Button -->
+                <ion-button class="text-color-accent text-size-md font-bold ion-text-capitalize" fill="clear" (click)="delete(item)">
+                  {{item.delate}}
+                </ion-button>
+              </ion-item-option>
+            </ion-item-options>
+          </ion-item-sliding>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

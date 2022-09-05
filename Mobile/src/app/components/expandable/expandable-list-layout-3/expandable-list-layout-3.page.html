@@ -1,0 +1,33 @@
+
+  <ion-content *ngIf="data != null">
+    <ion-grid class="ion-no-padding">
+      <ion-row *ngIf="data != null">
+        <ion-col size="12" class="ion-no-padding ion-no-margin">
+          <ion-list>
+            <ul class="ion-no-margin" class="ion-no-padding collapsible">
+              <li *ngFor="let group of data.items">
+                <!-- Expandable Full image with CTA Header-->
+                <div class="collapsible-header" (click)="toggleGroup(group)">
+                  <ion-item>
+                    <ion-label class="ion-text-capitalize">
+                      <!-- Title -->
+                      <h2 class="text-size-md text-color-primary font-light">{{group.title}}</h2>
+                    </ion-label>
+                    <!-- Icon -->
+                    <i slot="end" class="icon {{group.icon}} icon-font-md icon-color-accent"></i>
+                  </ion-item>
+                </div>
+                <!-- Expandable Full image with CTA Body -->
+                <div class="item-accordion"[ngClass]="{'active': group.show }" [hidden]="!group.show">
+                  <ion-item *ngFor="let item of group.items;" (tap)="onEvent('onCheckBoxClick', item, $event);">
+                    <ion-checkbox [checked]="item.isChecked"></ion-checkbox>
+                    <ion-label class="ion-padding-start text-size-xs text-color-primary font-light ion-text-uppercase">{{item.title}}</ion-label>
+                  </ion-item>
+                </div>
+              </li>
+            </ul>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-content>

@@ -1,0 +1,18 @@
+/* Style component 1
+========================================================*/
+
+ion-list-header {
+  overflow: visible;
+
+  ion-button {
+    align-self: flex-end;
+  }
+}
+
+ion-item {
+  --background: var(--cs-background-primary);
+}
+
+ion-item-options {
+  border-bottom: 1px solid var(--cs-background-border) !important;
+}

@@ -1,0 +1,32 @@
+<!--  Theme Form - Form + Write Comment -->
+<ion-content>
+  <ion-slides #wizardSlider pager="true"
+  (ionSlideDidChange)="ionSlideDidChange($event)"
+  (ionSlideReachStart)="ionSlideReachStart($event)"
+  (ionSlideReachEnd)="ionSlideReachEnd($event)">
+    <ion-slide *ngFor="let item of data.items" background-size
+    [ngStyle]="{'background-image': 'url(' + item.backgroundImage + ')'}">
+      <ion-card class="ion-no-margin ion-padding no-box-shadow ion-text-left">
+        <ion-img class="ion-float-start logo" [src]="item.logo"></ion-img>
+        <div class="clearfix"></div>
+        <ion-card-content class="ion-no-padding">
+          <h1 class="text-size-xl text-color-accent font-bold ion-padding-top">{{item.title}}</h1>
+          <div class="clearfix"></div>
+          <p class="text-size-md text-color-secondary font-light ion-padding-top">{{item.description}}</p>
+        </ion-card-content>
+      </ion-card>
+    </ion-slide>
+  </ion-slides>
+  <!--Button section-->
+  <div>
+    <ion-button fill="clear" class="text-color-accent ion-text-capitalize ion-float-start" (click)="onPreviousFunc()" *ngIf="prev">
+      {{data.btnPrev}}
+    </ion-button>
+    <ion-button fill="clear" class="text-color-accent ion-text-capitalize ion-float-end" (click)="onNextFunc()" *ngIf="next">
+      {{data.btnNext}}
+    </ion-button>
+    <ion-button fill="clear" class="text-color-accent ion-text-capitalize ion-float-end" (click)="onFinishFunc()" *ngIf="!next">
+      {{data.btnFinish}}
+    </ion-button>
+  </div>
+</ion-content>

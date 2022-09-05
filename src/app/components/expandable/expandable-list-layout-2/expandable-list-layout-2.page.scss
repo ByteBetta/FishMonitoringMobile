@@ -1,0 +1,56 @@
+/* Style component 2
+========================================================*/
+
+li {
+  list-style-type: none;
+}
+
+.background-size {
+  height: 215px;
+  position: relative;
+  border-radius: var(--border-radius, 8px);
+  overflow: hidden;
+
+  ion-item {
+    position: absolute;
+    z-index: 999 !important;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    .button-icon {
+      position: relative;
+      --color: var(--cs-text-accent) !important;
+      --color-hover: var(--cs-text-accent);
+      --color-activated: var(--cs-text-accent)!important;
+      --color-focused: var(--cs-text-accent)!important;
+    }
+  }
+}
+/* Settings Accordion "OPEN" */
+
+.item-accordion {
+  max-height: 0;
+  display: block !important;
+  -moz-transition: all 400ms;
+  -ms-transition: all 400ms;
+  -o-transition: all 400ms;
+  -webkit-transition: all 400ms;
+  transition: all 400ms;
+  overflow: hidden;
+
+  &.active {
+    -moz-transition: all 400ms;
+    -ms-transition: all 400ms;
+    -o-transition: all 400ms;
+    -webkit-transition: all 400ms;
+    transition: all 400ms;
+    overflow: visible;
+    max-height: 999px;
+  }
+}
+
+.icon::before {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}

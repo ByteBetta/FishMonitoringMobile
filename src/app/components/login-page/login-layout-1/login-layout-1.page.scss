@@ -1,0 +1,61 @@
+:host {
+  --img-logo: 300px;
+  --facebook-button-background-color: #2156dd;
+  --facebook-button-text-color: var(--cs-text-light);
+}
+
+ion-grid,
+ion-row {
+  height: 100%;
+  text-align: center;
+  img {
+    width: var(--img-logo);
+    height: var(--img-logo);
+    
+  }
+
+  form {
+    .item-has-focus,
+    .item-has-value {
+      ion-input {
+        border-bottom: 1px solid var(--cs-background-accent);
+      }
+    }
+
+    ion-item {
+      --inner-padding-end: 0;
+      margin-bottom: 8px;
+
+      ion-input {
+        --background: var(--cs-background-primary) !important;
+        border-bottom: 1px solid var(--cs-background-border);
+      }
+
+      ion-icon {
+        position: absolute;
+        right: 5px;
+        bottom: 5px;
+        z-index: 999;
+      }
+
+      ion-label {
+        margin: 5px 0 0 0 !important;
+        transform: none;
+      }
+    }
+
+    ion-item:nth-child(2n) {
+      margin-bottom: 50px;
+    }
+
+    .facebook-button {
+      --background-hover: var(--facebook-button-background-color) !important;
+      --color-hover: var(--facebook-button-text-color) !important;
+      --background: var(--facebook-button-background-color) !important;
+      --color: var(--facebook-button-text-color) !important;
+      --color-activated: var(--facebook-button-text-color) !important;
+      --color-focused: var(--facebook-button-text-color) !important;
+      border-radius: 5px;
+    }
+  }
+}

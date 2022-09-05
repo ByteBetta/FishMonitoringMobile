@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "800830952471",
+    "firebase_url": "https://bfar-testproj-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "bfar-testproj",
+    "storage_bucket": "bfar-testproj.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:800830952471:android:610fc0cd6679a1d21bf852",
+        "android_client_info": {
+          "package_name": "com.bfar.fishmonitoring"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "800830952471-m023ph9ekl227boahnd2vp33j5uj5aur.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCFG-1P8peHOg1WwfPsPlHbrmojkrfd9pY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "800830952471-m023ph9ekl227boahnd2vp33j5uj5aur.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

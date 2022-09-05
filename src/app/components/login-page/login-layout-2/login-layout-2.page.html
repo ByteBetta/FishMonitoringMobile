@@ -1,0 +1,72 @@
+<!-- lOGIN FROMA --COMPONENT 1 -->
+<ion-page class="ion-page">
+  <!-- Header -->
+  <ion-header>
+    <ion-toolbar class="transparent">
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="/"></ion-back-button>
+      </ion-buttons>
+      <ion-title class="ion-text-capitalize">{{data.headerTitle}}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <!-- Content -->
+  <ion-content *ngIf="data != null" class="transparent">
+    <ion-grid class="ion-no-padding">
+      <ion-row class="ion-no-padding ion-align-items-center" *ngIf="data != null">
+        <ion-col class="ion-no-padding" size="12" size-md="8" push-md="2">
+          <ion-button class="button-clear ion-text-capitalize ion-float-start" fill="clear" (click)="onSkipFunc()">{{data.skip}}</ion-button>
+          <ion-button class="button-clear ion-text-capitalize ion-float-end" fill="clear" (click)="onForgotPassword()">{{data.forgotPassword}}</ion-button>
+        </ion-col>
+        <ion-col class="ion-padding-horizontal" size="12" size-md="8" push-md="2">
+          <ion-item class="ion-no-padding ion-margin-bottom ion-no-padding transparent"  lines="none" >
+            <!---Logo-->
+            <img slot="end" [src]="data.logo" />
+            <ion-label class="ion-text-wrap ion-margin-end">
+              <!---Logo Subtitle-->
+              <h2 class="ion-text-wrap text-size-md text-color-primary font-light">{{data.subtitle}}</h2>
+              <!---Logo Title-->
+              <h1 class="ion-text-wrap text-size-xl text-color-accent font-bold">{{data.title}}</h1>
+            </ion-label>
+          </ion-item>
+          <!---Form-->
+          <form class="ion-margin-top" >
+            <!---Input field username-->
+            <ion-item input lines="none" class="ion-no-padding transparent">
+              <ion-label class="text-size-xxs text-color-secondary font-regular" position="stacked">{{data.labelUsername}}</ion-label>
+              <ion-input required type="text" [placeholder]="data.username" [(ngModel)]="item.username" [ngModelOptions]="{standalone: true}"></ion-input>
+              <ion-icon class="icon-font-sm error-color" *ngIf="!isUsernameValid" name="remove-circle"></ion-icon>
+            </ion-item>
+            <!---Input field password-->
+            <ion-item input lines="none" class="ion-no-padding transparent">
+              <ion-label class="text-size-xxs text-color-secondary font-regular" position="stacked">{{data.labelPassword}}</ion-label>
+              <ion-input required type="password" [placeholder]="data.password" [(ngModel)]="item.password" [ngModelOptions]="{standalone: true}"></ion-input>
+              <ion-icon class="icon-font-sm error-color" *ngIf="!isPasswordValid" name="remove-circle"></ion-icon>
+            </ion-item>
+            <ion-row class="ion-margin-top ion-no-padding" >
+              <ion-col class="ion-no-padding ion-margin-top ion-margin-bottom" size="12">
+                <ion-button class="button-clear ion-text-capitalize ion-float-end" fill="clear" (click)="onLoginFunc()">{{data.login}}</ion-button>
+                <ion-button class="button-clear ion-text-capitalize ion-float-end" fill="clear" (click)="onRegister()">{{data.register}}</ion-button>
+              </ion-col>
+              <ion-col class="ion-no-padding ion-margin-top" size="6">
+                <ion-button class="button-default ion-text-capitalize" expand="block">
+                  {{data.facebook}}</ion-button>
+              </ion-col>
+              <ion-col class="ion-no-padding ion-margin-top" size="6">
+                <ion-button class="button-default ion-text-capitalize" expand="block">
+                  {{data.twitter}}</ion-button>
+              </ion-col>
+              <ion-col class="ion-no-padding" size="6">
+                <ion-button class="button-default ion-text-capitalize" expand="block">
+                  {{data.google}}</ion-button>
+              </ion-col>
+              <ion-col class="ion-no-padding" size="6">
+                <ion-button class="button-default ion-text-capitalize" expand="block">
+                  {{data.pinterest}}</ion-button>
+              </ion-col>
+            </ion-row>
+          </form>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-content>
+</ion-page>

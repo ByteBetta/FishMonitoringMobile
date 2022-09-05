@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Records
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <div *ngIf="!isEmpty">
+<cs-expandable-list-layout-1 (onDelete)="onDelete($event)" (onUpdate)="onUpdate($event)" [data]="data"></cs-expandable-list-layout-1>
+<ion-grid class="ion-padding">
+  <ion-row>
+<ion-col size="12" class="ion-no-padding ion-align-self-end">
+  <ion-button expand="block" class="ion-text-capitalize  button-default" (click)="SendData()">
+     Send Records
+  </ion-button>
+</ion-col>
+</ion-row>
+</ion-grid>
+</div>
+<div *ngIf="isEmpty">
+  <div class="is-empty-state-content">
+    <img src="assets/imgs/empty-tasks-1.png"/>
+    <h3>No Record Here</h3>
+    <p>This page will show your current records</p>
+    <ion-button shape="round" color="primary" (click)="addrecord()">Add Record</ion-button>
+  </div>
+</div>
+</ion-content>
